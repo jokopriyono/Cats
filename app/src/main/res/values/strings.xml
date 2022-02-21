@@ -11,4 +11,5 @@
     <string name="favorite">Favorite</string>
     <string name="vote">Vote</string>
     <string name="breeds">Breeds</string>
+    <string name="unfavorite">Unfavorite</string>
 </resources>
