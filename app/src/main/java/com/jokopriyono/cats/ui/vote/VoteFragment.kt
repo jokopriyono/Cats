@@ -9,6 +9,8 @@ import com.jokopriyono.cats.databinding.FragmentVoteBinding
 
 class VoteFragment : Fragment() {
 
+    // https://api.thecatapi.com/v1/images/search?limit=1
+
     companion object {
         fun newInstance() = VoteFragment()
     }
