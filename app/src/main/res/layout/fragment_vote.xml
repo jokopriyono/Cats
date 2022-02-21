@@ -9,9 +9,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
+        android:layout_margin="@dimen/_10dp"
+        app:cardCornerRadius="@dimen/_20dp"
+        app:cardElevation="@dimen/_10dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,9 +26,9 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLoveIt"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/_20dp"
         android:text="@string/love_it"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -40,9 +40,9 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnNopeIt"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/_20dp"
         android:text="@string/nope_it"
         android:textAllCaps="false"
         android:textColor="@color/white"
