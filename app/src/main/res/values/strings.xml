@@ -6,4 +6,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="love_it">Love It</string>
     <string name="nope_it">Nope It</string>
+    <string name="loading">Loading</string>
 </resources>
