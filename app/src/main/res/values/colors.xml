@@ -11,5 +11,7 @@
     <color name="primary">#f4921c</color>
     <color name="primaryDark">#e0621e</color>
     <color name="accent">#9ed149</color>
+    <color name="red1">#66FF9A9A</color>
+    <color name="red2">#FD3A3A</color>
 
 </resources>

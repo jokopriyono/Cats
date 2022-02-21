@@ -7,4 +7,8 @@
     <string name="love_it">Love It</string>
     <string name="nope_it">Nope It</string>
     <string name="loading">Loading</string>
+    <string name="refresh">Refresh</string>
+    <string name="favorite">Favorite</string>
+    <string name="vote">Vote</string>
+    <string name="breeds">Breeds</string>
 </resources>
