@@ -9,8 +9,6 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.jokopriyono.cats.databinding.FragmentVoteBinding
 import com.jokopriyono.cats.model.SearchResponseItem
-import com.jokopriyono.cats.network.ApiClient
-import com.jokopriyono.cats.network.ApiService
 import com.jokopriyono.cats.ui.MainActivity
 import kotlinx.coroutines.GlobalScope
 
@@ -48,6 +46,17 @@ class VoteFragment : Fragment(), VoteView {
         super.onViewCreated(view, savedInstanceState)
 
         refreshCat()
+
+        binding.btnLoveIt.setOnClickListener {
+            (activity as MainActivity).showLoading()
+            // love di postman value = 1
+            presenter?.voteCat(true)
+        }
+        binding.btnNopeIt.setOnClickListener {
+            (activity as MainActivity).showLoading()
+            // nope di postman value = 0
+            presenter?.voteCat(false)
+        }
     }
 
     override fun refreshCat() {

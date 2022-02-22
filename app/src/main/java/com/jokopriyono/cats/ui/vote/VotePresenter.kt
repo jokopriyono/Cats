@@ -4,6 +4,6 @@ interface VotePresenter {
 
     fun getCat()
 
-    fun voteCat()
+    fun voteCat(loveOrNope: Boolean)
 
 }

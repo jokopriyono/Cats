@@ -1,8 +1,12 @@
 package com.jokopriyono.cats.network
 
 import com.jokopriyono.cats.model.SearchResponse
+import com.jokopriyono.cats.model.vote.VoteBody
+import com.jokopriyono.cats.model.vote.VoteResponse
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ApiService {
@@ -21,5 +25,10 @@ interface ApiService {
         @Query("include_breeds") includeBreeds: Boolean? = null,
         @Query("include_categories") includeCategories: Boolean? = null,
     ): Call<SearchResponse>
+
+    @POST("votes")
+    fun voteCat(
+        @Body body: VoteBody
+    ): Call<VoteResponse>
 
 }
