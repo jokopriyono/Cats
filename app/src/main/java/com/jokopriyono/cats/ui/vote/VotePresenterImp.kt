@@ -5,6 +5,7 @@ import com.jokopriyono.cats.model.SearchResponseItem
 import com.jokopriyono.cats.model.vote.VoteBody
 import com.jokopriyono.cats.model.vote.VoteResponse
 import com.jokopriyono.cats.network.ApiClient
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -12,6 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@DelicateCoroutinesApi
 class VotePresenterImp(
     private val view: VoteView,
     private val globalScope: GlobalScope,
@@ -44,7 +46,7 @@ class VotePresenterImp(
                     }
 
                     override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
-                        view.showError("${t.localizedMessage}")
+                        view.showError(t.message.toString())
                         view.hideLoading()
                     }
                 })
@@ -77,7 +79,7 @@ class VotePresenterImp(
                     }
 
                     override fun onFailure(call: Call<VoteResponse>, t: Throwable) {
-                        view.showError("${t.localizedMessage}")
+                        view.showError(t.message.toString())
                         view.hideLoading()
                     }
 

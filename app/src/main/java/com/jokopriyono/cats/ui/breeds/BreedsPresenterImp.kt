@@ -3,6 +3,7 @@ package com.jokopriyono.cats.ui.breeds
 import com.jokopriyono.cats.model.SearchResponse
 import com.jokopriyono.cats.model.breeds.BreedsResponse
 import com.jokopriyono.cats.network.ApiClient
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -10,6 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@DelicateCoroutinesApi
 class BreedsPresenterImp(
     private val view: BreedsView,
     private val globalScope: GlobalScope,
@@ -39,7 +41,7 @@ class BreedsPresenterImp(
                     }
 
                     override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
-                        view.showError("${t.localizedMessage}")
+                        view.showError(t.message.toString())
                         view.hideLoading()
                     }
                 })
@@ -70,7 +72,7 @@ class BreedsPresenterImp(
                     }
 
                     override fun onFailure(call: Call<BreedsResponse>, t: Throwable) {
-                        view.showError("${t.localizedMessage}")
+                        view.showError(t.message.toString())
                         view.hideLoading()
                     }
 
