@@ -3,9 +3,13 @@ package com.jokopriyono.cats.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.jokopriyono.cats.databinding.ItemCatBinding
+import com.jokopriyono.cats.model.SearchResponseItem
 
-class BreedsAdapter : RecyclerView.Adapter<BreedsAdapter.ViewHolder>() {
+class BreedsAdapter(
+    private val cats: ArrayList<SearchResponseItem>
+    ) : RecyclerView.Adapter<BreedsAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemCatBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -16,11 +20,10 @@ class BreedsAdapter : RecyclerView.Adapter<BreedsAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: BreedsAdapter.ViewHolder, position: Int) {
-        // TODO("Not yet implemented")
+        Glide.with(holder.binding.imgCat.context)
+            .load(cats[position].url)
+            .into(holder.binding.imgCat)
     }
 
-    override fun getItemCount(): Int {
-        // TODO("Not yet implemented")
-        return 10
-    }
+    override fun getItemCount() = cats.size
 }

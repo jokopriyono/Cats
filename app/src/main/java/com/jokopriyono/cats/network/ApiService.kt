@@ -1,6 +1,7 @@
 package com.jokopriyono.cats.network
 
 import com.jokopriyono.cats.model.SearchResponse
+import com.jokopriyono.cats.model.breeds.BreedsResponse
 import com.jokopriyono.cats.model.vote.VoteBody
 import com.jokopriyono.cats.model.vote.VoteResponse
 import retrofit2.Call
@@ -30,5 +31,11 @@ interface ApiService {
     fun voteCat(
         @Body body: VoteBody
     ): Call<VoteResponse>
+
+    @GET("breeds")
+    fun getAllBreeds(
+        @Query("limit") limit: Int? = null,
+        @Query("page") page: Int? = null,
+    ): Call<BreedsResponse>
 
 }
