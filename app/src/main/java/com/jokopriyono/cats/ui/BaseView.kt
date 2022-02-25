@@ -1,6 +1,6 @@
 package com.jokopriyono.cats.ui
 
-interface MainView {
+interface BaseView {
 
     fun showLoading()
 

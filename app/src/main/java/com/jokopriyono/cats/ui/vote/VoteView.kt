@@ -1,8 +1,9 @@
 package com.jokopriyono.cats.ui.vote
 
 import com.jokopriyono.cats.model.SearchResponseItem
+import com.jokopriyono.cats.ui.BaseView
 
-interface VoteView {
+interface VoteView: BaseView {
 
     fun refreshCat()
 

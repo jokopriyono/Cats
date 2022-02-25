@@ -1,13 +1,14 @@
 package com.jokopriyono.cats.ui.breeds
 
-import com.jokopriyono.cats.model.SearchResponseItem
+import com.jokopriyono.cats.model.SearchResponse
 import com.jokopriyono.cats.model.breeds.BreedsResponse
+import com.jokopriyono.cats.ui.BaseView
 
-interface BreedsView {
+interface BreedsView: BaseView {
 
-    fun refreshCat(breedsId: String)
+    fun refreshCat()
 
-    fun showCat(cats: ArrayList<SearchResponseItem>)
+    fun showCats(cats: SearchResponse)
 
     fun showError(message: String)
 

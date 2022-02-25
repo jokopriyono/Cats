@@ -60,7 +60,6 @@ class VoteFragment : Fragment(), VoteView {
     }
 
     override fun refreshCat() {
-        (activity as MainActivity).showLoading()
         presenter?.getCat()
     }
 
@@ -72,8 +71,15 @@ class VoteFragment : Fragment(), VoteView {
     }
 
     override fun showError(message: String) {
-        (activity as MainActivity).hideLoading()
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    }
+
+    override fun showLoading() {
+        (activity as MainActivity?)?.showLoading()
+    }
+
+    override fun hideLoading() {
+        (activity as MainActivity?)?.hideLoading()
     }
 
 }

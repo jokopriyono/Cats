@@ -16,8 +16,9 @@ class BreedsPresenterImp(
 ) : BreedsPresenter {
 
     override fun getCat(breedIds: String) {
+        view.showLoading()
         globalScope.launch(Dispatchers.IO) {
-            ApiClient.instance.searchImages(breedIds = breedIds, limit = 10)
+            ApiClient.instance.searchImages(size = "small", breedIds = breedIds, limit = 10)
                 .enqueue(object : Callback<SearchResponse> {
                     override fun onResponse(
                         call: Call<SearchResponse>,
@@ -29,21 +30,24 @@ class BreedsPresenterImp(
                                 view.showError("Tidak ada kucing di server")
                             } else {
                                 val cat = response.body()!!
-                                view.showCat(cat)
+                                view.showCats(cat)
                             }
                         } else {
                             view.showError("Masalah koneksi ke server ${response.code()}")
                         }
+                        view.hideLoading()
                     }
 
                     override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
                         view.showError("${t.localizedMessage}")
+                        view.hideLoading()
                     }
                 })
         }
     }
 
     override fun getBreeds() {
+        view.showLoading()
         globalScope.launch(Dispatchers.IO) {
             ApiClient.instance.getAllBreeds()
                 .enqueue(object : Callback<BreedsResponse> {
@@ -62,10 +66,12 @@ class BreedsPresenterImp(
                         } else {
                             view.showError("Masalah koneksi ke server ${response.code()}")
                         }
+                        view.hideLoading()
                     }
 
                     override fun onFailure(call: Call<BreedsResponse>, t: Throwable) {
                         view.showError("${t.localizedMessage}")
+                        view.hideLoading()
                     }
 
                 })

@@ -8,7 +8,7 @@ import com.jokopriyono.cats.adapter.TabAdapter
 import com.jokopriyono.cats.databinding.ActivityMainBinding
 import com.jokopriyono.cats.dialog.CustomLoadingDialog
 
-class MainActivity : AppCompatActivity(), MainView {
+class MainActivity : AppCompatActivity(), BaseView {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var loadingUI: CustomLoadingDialog

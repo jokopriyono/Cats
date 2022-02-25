@@ -20,8 +20,9 @@ class VotePresenterImp(
     private var lastCat: SearchResponseItem? = null
 
     override fun getCat() {
+        view.showLoading()
         globalScope.launch(Dispatchers.IO) {
-            ApiClient.instance.searchImages(order = "RANDOM", limit = 1)
+            ApiClient.instance.searchImages(size = "small", order = "RANDOM", limit = 1)
                 .enqueue(object : Callback<SearchResponse> {
                     override fun onResponse(
                         call: Call<SearchResponse>,
@@ -39,16 +40,19 @@ class VotePresenterImp(
                         } else {
                             view.showError("Masalah koneksi ke server ${response.code()}")
                         }
+                        view.hideLoading()
                     }
 
                     override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
                         view.showError("${t.localizedMessage}")
+                        view.hideLoading()
                     }
                 })
         }
     }
 
     override fun voteCat(loveOrNope: Boolean) {
+        view.showLoading()
         globalScope.launch(Dispatchers.IO) {
             val value = if (loveOrNope) 1 else 0
             val body = VoteBody(lastCat!!.id, "cats", value)
@@ -69,10 +73,12 @@ class VotePresenterImp(
                         } else {
                             view.showError("Masalah koneksi ke server $code")
                         }
+                        view.hideLoading()
                     }
 
                     override fun onFailure(call: Call<VoteResponse>, t: Throwable) {
                         view.showError("${t.localizedMessage}")
+                        view.hideLoading()
                     }
 
                 })

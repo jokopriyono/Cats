@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jokopriyono.cats.adapter.BreedsAdapter
 import com.jokopriyono.cats.databinding.FragmentBreedsBinding
-import com.jokopriyono.cats.model.SearchResponseItem
+import com.jokopriyono.cats.model.SearchResponse
 import com.jokopriyono.cats.model.breeds.BreedsResponse
 import com.jokopriyono.cats.ui.MainActivity
 import kotlinx.coroutines.GlobalScope
@@ -47,9 +47,7 @@ class BreedsFragment : Fragment(), BreedsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnRefresh.setOnClickListener {
-            if (lastSelectedBreeds.isNotEmpty()) {
-                refreshCat(lastSelectedBreeds)
-            }
+            refreshCat()
         }
     }
 
@@ -58,13 +56,13 @@ class BreedsFragment : Fragment(), BreedsView {
         _binding = null
     }
 
-    override fun refreshCat(breedsId: String) {
-        (activity as MainActivity).showLoading()
-        presenter?.getCat(breedsId)
+    override fun refreshCat() {
+        if (lastSelectedBreeds.isNotEmpty()) {
+            presenter?.getCat(lastSelectedBreeds)
+        }
     }
 
-    override fun showCat(cats: ArrayList<SearchResponseItem>) {
-        (activity as MainActivity).hideLoading()
+    override fun showCats(cats: SearchResponse) {
         binding.recyclerCats.apply {
             layoutManager = GridLayoutManager(context, 2)
             adapter = BreedsAdapter(cats)
@@ -72,13 +70,11 @@ class BreedsFragment : Fragment(), BreedsView {
     }
 
     override fun showError(message: String) {
-        (activity as MainActivity).hideLoading()
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 
     override fun showAllBreeds(breeds: BreedsResponse) {
-        (activity as MainActivity).hideLoading()
-        val spinnerArray = breeds.map { it.name }
+        val spinnerArray = breeds.map { it.name } // convert array object to array string
         val adapter = ArrayAdapter(
             requireContext(), android.R.layout.simple_spinner_item, spinnerArray
         )
@@ -102,5 +98,14 @@ class BreedsFragment : Fragment(), BreedsView {
                 }
 
             }
+        refreshCat()
+    }
+
+    override fun showLoading() {
+        (activity as MainActivity?)?.showLoading()
+    }
+
+    override fun hideLoading() {
+        (activity as MainActivity?)?.hideLoading()
     }
 }
