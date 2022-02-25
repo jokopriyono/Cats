@@ -10,8 +10,10 @@ import com.bumptech.glide.Glide
 import com.jokopriyono.cats.databinding.FragmentVoteBinding
 import com.jokopriyono.cats.model.SearchResponseItem
 import com.jokopriyono.cats.ui.MainActivity
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 
+@DelicateCoroutinesApi
 class VoteFragment : Fragment(), VoteView {
 
     // https://api.thecatapi.com/v1/images/search?limit=1

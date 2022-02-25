@@ -6,7 +6,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.jokopriyono.cats.ui.favorite.FavoriteFragment
 import com.jokopriyono.cats.ui.breeds.BreedsFragment
 import com.jokopriyono.cats.ui.vote.VoteFragment
+import kotlinx.coroutines.DelicateCoroutinesApi
 
+@DelicateCoroutinesApi
 class TabAdapter(fragmentAct: FragmentActivity) : FragmentStateAdapter(fragmentAct) {
 
     override fun getItemCount() = 3

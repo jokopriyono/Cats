@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jokopriyono.cats.adapter.FavoriteAdapter
 import com.jokopriyono.cats.databinding.FragmentFavoriteBinding
+import kotlinx.coroutines.DelicateCoroutinesApi
 
+@DelicateCoroutinesApi
 class FavoriteFragment : Fragment() {
 
     // https://api.thecatapi.com/v1/favourites?limit=9&page=0&order=Asc&size=small

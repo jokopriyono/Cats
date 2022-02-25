@@ -8,8 +8,9 @@ import com.jokopriyono.cats.databinding.ItemCatBinding
 import com.jokopriyono.cats.model.SearchResponseItem
 
 class BreedsAdapter(
-    private val cats: ArrayList<SearchResponseItem>
-    ) : RecyclerView.Adapter<BreedsAdapter.ViewHolder>() {
+    private val cats: ArrayList<SearchResponseItem>,
+    private val onItemClick: (SearchResponseItem) -> Unit
+) : RecyclerView.Adapter<BreedsAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemCatBinding) :
         RecyclerView.ViewHolder(binding.root)

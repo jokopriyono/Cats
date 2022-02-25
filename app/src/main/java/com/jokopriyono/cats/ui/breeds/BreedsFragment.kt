@@ -14,8 +14,10 @@ import com.jokopriyono.cats.databinding.FragmentBreedsBinding
 import com.jokopriyono.cats.model.SearchResponse
 import com.jokopriyono.cats.model.breeds.BreedsResponse
 import com.jokopriyono.cats.ui.MainActivity
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 
+@DelicateCoroutinesApi
 class BreedsFragment : Fragment(), BreedsView {
 
     // https://api.thecatapi.com/v1/images/search?limit=8&size=full&breed_id=abob
@@ -65,7 +67,9 @@ class BreedsFragment : Fragment(), BreedsView {
     override fun showCats(cats: SearchResponse) {
         binding.recyclerCats.apply {
             layoutManager = GridLayoutManager(context, 2)
-            adapter = BreedsAdapter(cats)
+            adapter = BreedsAdapter(cats) {
+                // TODO on item click listener
+            }
         }
     }
 
