@@ -1,17 +1,23 @@
 package com.jokopriyono.cats.ui.favorite
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jokopriyono.cats.adapter.FavoriteAdapter
 import com.jokopriyono.cats.databinding.FragmentFavoriteBinding
+import com.jokopriyono.cats.ui.MainActivity
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
 
 @DelicateCoroutinesApi
-class FavoriteFragment : Fragment() {
+class FavoriteFragment : Fragment(), FavoriteView {
 
     // https://api.thecatapi.com/v1/favourites?limit=9&page=0&order=Asc&size=small
 
@@ -21,6 +27,12 @@ class FavoriteFragment : Fragment() {
 
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
+    private var presenter: FavoritePresenterImp? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        presenter = FavoritePresenterImp(this, GlobalScope)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,9 +49,35 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val spinnerArray = arrayOf("Latest", "Oldest")
+        val adapter = ArrayAdapter(
+            requireContext(), R.layout.simple_spinner_item, spinnerArray
+        )
+        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        binding.spinnerOrder.adapter = adapter
+    }
+
+    override fun refreshFavorite() {
+        presenter?.getAllFavorite()
+    }
+
+    override fun showAllFavorite() {
         binding.recyclerFavCats.apply {
             layoutManager = GridLayoutManager(context, 2)
             adapter = FavoriteAdapter()
         }
+    }
+
+    override fun showError(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    }
+
+    override fun showLoading() {
+        (activity as MainActivity?)?.showLoading()
+    }
+
+    override fun hideLoading() {
+        (activity as MainActivity?)?.hideLoading()
     }
 }

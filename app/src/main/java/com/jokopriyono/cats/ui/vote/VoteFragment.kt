@@ -50,12 +50,10 @@ class VoteFragment : Fragment(), VoteView {
         refreshCat()
 
         binding.btnLoveIt.setOnClickListener {
-            (activity as MainActivity).showLoading()
             // love di postman value = 1
             presenter?.voteCat(true)
         }
         binding.btnNopeIt.setOnClickListener {
-            (activity as MainActivity).showLoading()
             // nope di postman value = 0
             presenter?.voteCat(false)
         }
