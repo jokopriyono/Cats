@@ -1,5 +1,6 @@
 package com.jokopriyono.cats.ui.breeds
 
+import com.jokopriyono.cats.database.CatDatabase
 import com.jokopriyono.cats.model.network.search.SearchResponse
 import com.jokopriyono.cats.model.network.breeds.BreedsResponse
 import com.jokopriyono.cats.network.ApiClient
@@ -14,6 +15,7 @@ import retrofit2.Response
 @DelicateCoroutinesApi
 class BreedsPresenterImp(
     private val view: BreedsView,
+    private val database: CatDatabase,
     private val globalScope: GlobalScope,
 ) : BreedsPresenter {
 

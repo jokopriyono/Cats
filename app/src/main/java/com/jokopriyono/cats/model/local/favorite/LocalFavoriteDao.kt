@@ -1,4 +1,4 @@
-package com.jokopriyono.cats.model.local.database.favorite
+package com.jokopriyono.cats.model.local.favorite
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE

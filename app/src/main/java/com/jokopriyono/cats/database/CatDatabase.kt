@@ -1,13 +1,14 @@
-package com.jokopriyono.cats.model.local.database
+package com.jokopriyono.cats.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.jokopriyono.cats.model.local.database.favorite.LocalFavorite
-import com.jokopriyono.cats.model.local.database.favorite.LocalFavoriteDao
+import com.jokopriyono.cats.model.local.example.Example
+import com.jokopriyono.cats.model.local.favorite.LocalFavorite
+import com.jokopriyono.cats.model.local.favorite.LocalFavoriteDao
 
-@Database(entities = [LocalFavorite::class], version = 1)
+@Database(entities = [LocalFavorite::class, Example::class], version = 1)
 abstract class CatDatabase : RoomDatabase() {
 
     abstract fun favoriteDao(): LocalFavoriteDao

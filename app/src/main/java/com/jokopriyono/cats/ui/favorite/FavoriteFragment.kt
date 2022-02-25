@@ -1,16 +1,15 @@
 package com.jokopriyono.cats.ui.favorite
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jokopriyono.cats.adapter.FavoriteAdapter
+import com.jokopriyono.cats.database.CatDatabase
 import com.jokopriyono.cats.databinding.FragmentFavoriteBinding
 import com.jokopriyono.cats.ui.MainActivity
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -28,10 +27,12 @@ class FavoriteFragment : Fragment(), FavoriteView {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
     private var presenter: FavoritePresenterImp? = null
+    private var database: CatDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = FavoritePresenterImp(this, GlobalScope)
+        database = CatDatabase.getInstance(requireContext())
+        presenter = FavoritePresenterImp(this, database!!, GlobalScope)
     }
 
     override fun onCreateView(
@@ -52,9 +53,9 @@ class FavoriteFragment : Fragment(), FavoriteView {
 
         val spinnerArray = arrayOf("Latest", "Oldest")
         val adapter = ArrayAdapter(
-            requireContext(), R.layout.simple_spinner_item, spinnerArray
+            requireContext(), android.R.layout.simple_spinner_item, spinnerArray
         )
-        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerOrder.adapter = adapter
     }
 

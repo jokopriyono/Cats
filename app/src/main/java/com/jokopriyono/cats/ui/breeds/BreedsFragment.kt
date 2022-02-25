@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jokopriyono.cats.adapter.BreedsAdapter
+import com.jokopriyono.cats.database.CatDatabase
 import com.jokopriyono.cats.databinding.FragmentBreedsBinding
 import com.jokopriyono.cats.model.network.search.SearchResponse
 import com.jokopriyono.cats.model.network.breeds.BreedsResponse
@@ -29,12 +30,14 @@ class BreedsFragment : Fragment(), BreedsView {
     private var _binding: FragmentBreedsBinding? = null
     private val binding get() = _binding!!
     private var presenter: BreedsPresenterImp? = null
+    private var database: CatDatabase? = null
 
     private var lastSelectedBreeds = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = BreedsPresenterImp(this, GlobalScope)
+        database = CatDatabase.getInstance(requireContext())
+        presenter = BreedsPresenterImp(this, database!!, GlobalScope)
         presenter?.getBreeds()
     }
 
@@ -56,6 +59,11 @@ class BreedsFragment : Fragment(), BreedsView {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        CatDatabase.destroyInstance()
     }
 
     override fun refreshCat() {
