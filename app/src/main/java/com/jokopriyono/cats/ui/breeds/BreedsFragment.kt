@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jokopriyono.cats.adapter.BreedsAdapter
 import com.jokopriyono.cats.databinding.FragmentBreedsBinding
-import com.jokopriyono.cats.model.SearchResponse
-import com.jokopriyono.cats.model.breeds.BreedsResponse
+import com.jokopriyono.cats.model.network.search.SearchResponse
+import com.jokopriyono.cats.model.network.breeds.BreedsResponse
 import com.jokopriyono.cats.ui.MainActivity
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope

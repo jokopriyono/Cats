@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.jokopriyono.cats.databinding.FragmentVoteBinding
-import com.jokopriyono.cats.model.SearchResponseItem
+import com.jokopriyono.cats.model.network.search.SearchResponseItem
 import com.jokopriyono.cats.ui.MainActivity
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope

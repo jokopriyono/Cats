@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jokopriyono.cats.databinding.ItemCatBinding
-import com.jokopriyono.cats.model.SearchResponseItem
+import com.jokopriyono.cats.model.network.search.SearchResponseItem
 
 class BreedsAdapter(
     private val cats: ArrayList<SearchResponseItem>,

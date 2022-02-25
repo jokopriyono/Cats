@@ -1,4 +1,4 @@
-package com.jokopriyono.cats.model.vote
+package com.jokopriyono.cats.model.network.vote
 
 
 import com.google.gson.annotations.SerializedName

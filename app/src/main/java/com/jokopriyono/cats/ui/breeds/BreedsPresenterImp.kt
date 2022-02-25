@@ -1,7 +1,7 @@
 package com.jokopriyono.cats.ui.breeds
 
-import com.jokopriyono.cats.model.SearchResponse
-import com.jokopriyono.cats.model.breeds.BreedsResponse
+import com.jokopriyono.cats.model.network.search.SearchResponse
+import com.jokopriyono.cats.model.network.breeds.BreedsResponse
 import com.jokopriyono.cats.network.ApiClient
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers

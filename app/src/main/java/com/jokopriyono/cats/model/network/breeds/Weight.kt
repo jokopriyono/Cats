@@ -1,4 +1,4 @@
-package com.jokopriyono.cats.model
+package com.jokopriyono.cats.model.network.breeds
 
 
 import com.google.gson.annotations.SerializedName

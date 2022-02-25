@@ -1,9 +1,9 @@
 package com.jokopriyono.cats.network
 
-import com.jokopriyono.cats.model.SearchResponse
-import com.jokopriyono.cats.model.breeds.BreedsResponse
-import com.jokopriyono.cats.model.vote.VoteBody
-import com.jokopriyono.cats.model.vote.VoteResponse
+import com.jokopriyono.cats.model.network.search.SearchResponse
+import com.jokopriyono.cats.model.network.breeds.BreedsResponse
+import com.jokopriyono.cats.model.network.vote.VoteBody
+import com.jokopriyono.cats.model.network.vote.VoteResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET

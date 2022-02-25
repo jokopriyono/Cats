@@ -1,9 +1,9 @@
 package com.jokopriyono.cats.ui.vote
 
-import com.jokopriyono.cats.model.SearchResponse
-import com.jokopriyono.cats.model.SearchResponseItem
-import com.jokopriyono.cats.model.vote.VoteBody
-import com.jokopriyono.cats.model.vote.VoteResponse
+import com.jokopriyono.cats.model.network.search.SearchResponse
+import com.jokopriyono.cats.model.network.search.SearchResponseItem
+import com.jokopriyono.cats.model.network.vote.VoteBody
+import com.jokopriyono.cats.model.network.vote.VoteResponse
 import com.jokopriyono.cats.network.ApiClient
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers

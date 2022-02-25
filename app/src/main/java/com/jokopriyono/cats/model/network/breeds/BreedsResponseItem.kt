@@ -1,13 +1,15 @@
-package com.jokopriyono.cats.model
+package com.jokopriyono.cats.model.network.breeds
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Breed(
+data class BreedsResponseItem(
     @SerializedName("adaptability")
     val adaptability: Int,
     @SerializedName("affection_level")
     val affectionLevel: Int,
+    @SerializedName("alt_names")
+    val altNames: String,
     @SerializedName("bidability")
     val bidability: Int,
     @SerializedName("cat_friendly")
@@ -38,6 +40,8 @@ data class Breed(
     val hypoallergenic: Int,
     @SerializedName("id")
     val id: String,
+    @SerializedName("image")
+    val image: Image,
     @SerializedName("indoor")
     val indoor: Int,
     @SerializedName("intelligence")

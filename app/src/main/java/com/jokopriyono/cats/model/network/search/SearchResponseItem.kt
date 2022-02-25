@@ -1,9 +1,11 @@
-package com.jokopriyono.cats.model.breeds
+package com.jokopriyono.cats.model.network.search
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Image(
+data class SearchResponseItem(
+    @SerializedName("breeds")
+    val breeds: List<Breed>,
     @SerializedName("height")
     val height: Int,
     @SerializedName("id")

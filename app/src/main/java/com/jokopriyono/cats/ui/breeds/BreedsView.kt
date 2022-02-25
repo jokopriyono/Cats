@@ -1,7 +1,7 @@
 package com.jokopriyono.cats.ui.breeds
 
-import com.jokopriyono.cats.model.SearchResponse
-import com.jokopriyono.cats.model.breeds.BreedsResponse
+import com.jokopriyono.cats.model.network.search.SearchResponse
+import com.jokopriyono.cats.model.network.breeds.BreedsResponse
 import com.jokopriyono.cats.ui.BaseView
 
 interface BreedsView: BaseView {
