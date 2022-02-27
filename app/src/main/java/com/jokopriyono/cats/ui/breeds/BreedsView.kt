@@ -14,4 +14,6 @@ interface BreedsView: BaseView {
 
     fun showAllBreeds(breeds: BreedsResponse)
 
+    fun updateItemRecycler(position: Int)
+
 }

@@ -31,6 +31,7 @@ class BreedsFragment : Fragment(), BreedsView {
     private val binding get() = _binding!!
     private var presenter: BreedsPresenterImp? = null
     private var database: CatDatabase? = null
+    private lateinit var breedsAdapter: BreedsAdapter
 
     private var lastSelectedBreeds = ""
 
@@ -73,12 +74,12 @@ class BreedsFragment : Fragment(), BreedsView {
     }
 
     override fun showCats(cats: SearchResponse) {
+        breedsAdapter = BreedsAdapter(cats) { position, cat ->
+            presenter?.postFavorite(position, cat)
+        }
         binding.recyclerCats.apply {
             layoutManager = GridLayoutManager(context, 2)
-            adapter = BreedsAdapter(cats) {
-                // TODO on item click listener
-                presenter?.postFavorite(it.id)
-            }
+            adapter = breedsAdapter
         }
     }
 
@@ -112,6 +113,10 @@ class BreedsFragment : Fragment(), BreedsView {
 
             }
         refreshCat()
+    }
+
+    override fun updateItemRecycler(position: Int) {
+        breedsAdapter.updateItem(position, true)
     }
 
     override fun showLoading() {

@@ -13,5 +13,8 @@ data class SearchResponseItem(
     @SerializedName("url")
     val url: String,
     @SerializedName("width")
-    val width: Int
+    val width: Int,
+
+    // custom properties
+    var alreadySaved: Boolean = false,
 )
