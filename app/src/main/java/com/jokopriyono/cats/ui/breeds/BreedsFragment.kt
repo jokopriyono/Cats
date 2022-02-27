@@ -12,8 +12,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.jokopriyono.cats.adapter.BreedsAdapter
 import com.jokopriyono.cats.database.CatDatabase
 import com.jokopriyono.cats.databinding.FragmentBreedsBinding
-import com.jokopriyono.cats.model.network.search.SearchResponse
 import com.jokopriyono.cats.model.network.breeds.BreedsResponse
+import com.jokopriyono.cats.model.network.search.SearchResponse
+import com.jokopriyono.cats.model.network.search.SearchResponseItem
 import com.jokopriyono.cats.ui.MainActivity
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -31,7 +32,7 @@ class BreedsFragment : Fragment(), BreedsView {
     private val binding get() = _binding!!
     private var presenter: BreedsPresenterImp? = null
     private var database: CatDatabase? = null
-    private lateinit var breedsAdapter: BreedsAdapter
+    private var breedsAdapter: BreedsAdapter? = null
 
     private var lastSelectedBreeds = ""
 
@@ -54,6 +55,18 @@ class BreedsFragment : Fragment(), BreedsView {
         super.onViewCreated(view, savedInstanceState)
         binding.btnRefresh.setOnClickListener {
             refreshCat()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        println("onResume BreedsFragment")
+        refreshCatFromDatabase()
+    }
+
+    override fun refreshCatFromDatabase() {
+        breedsAdapter?.let {
+            presenter?.updateCatDatabase(it.cats)
         }
     }
 
@@ -116,7 +129,16 @@ class BreedsFragment : Fragment(), BreedsView {
     }
 
     override fun updateItemRecycler(position: Int) {
-        breedsAdapter.updateItem(position, true)
+        requireActivity().runOnUiThread {
+            breedsAdapter?.updateItem(position, true)
+        }
+    }
+
+    override fun updateAllItemRecycler(cats: List<SearchResponseItem>) {
+        requireActivity().runOnUiThread {
+            breedsAdapter?.cats = cats
+            breedsAdapter?.notifyItemChanged(0, cats.size - 1)
+        }
     }
 
     override fun showLoading() {

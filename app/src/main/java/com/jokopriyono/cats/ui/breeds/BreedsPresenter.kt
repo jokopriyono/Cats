@@ -6,6 +6,8 @@ interface BreedsPresenter {
 
     fun getCat(breedIds: String)
 
+    fun updateCatDatabase(cats: List<SearchResponseItem>)
+
     fun getBreeds()
 
     fun postFavorite(position: Int, cat: SearchResponseItem)

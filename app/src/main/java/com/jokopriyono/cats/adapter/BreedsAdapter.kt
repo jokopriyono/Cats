@@ -10,7 +10,7 @@ import com.jokopriyono.cats.databinding.ItemCatBinding
 import com.jokopriyono.cats.model.network.search.SearchResponseItem
 
 class BreedsAdapter(
-    private val cats: ArrayList<SearchResponseItem>,
+    var cats: List<SearchResponseItem>,
     private val onItemClick: (Int, SearchResponseItem) -> Unit
 ) : RecyclerView.Adapter<BreedsAdapter.ViewHolder>() {
 

@@ -23,6 +23,19 @@ class BreedsPresenterImp(
     private val globalScope: GlobalScope,
 ) : BreedsPresenter {
 
+    override fun updateCatDatabase(cats: List<SearchResponseItem>) {
+        view.showLoading()
+        globalScope.launch {
+            cats.forEachIndexed { index, cat ->
+                val find = database.favoriteDao().findFavorite(cat.id)
+                cat.alreadySaved = find.isNotEmpty()
+            }.also {
+                view.updateAllItemRecycler(cats)
+                view.hideLoading()
+            }
+        }
+    }
+
     override fun getCat(breedIds: String) {
         view.showLoading()
         globalScope.launch(Dispatchers.IO) {

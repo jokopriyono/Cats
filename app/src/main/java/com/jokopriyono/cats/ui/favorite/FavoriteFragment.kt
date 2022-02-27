@@ -76,7 +76,7 @@ class FavoriteFragment : Fragment(), FavoriteView {
         binding.recyclerFavCats.apply {
             layoutManager = GridLayoutManager(context, 2)
             adapter = FavoriteAdapter(favorites) {
-                presenter?.removeFavorite(it.id)
+                presenter?.removeFavorite(it)
             }
         }
     }
