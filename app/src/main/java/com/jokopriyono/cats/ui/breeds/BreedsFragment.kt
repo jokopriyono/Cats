@@ -77,6 +77,7 @@ class BreedsFragment : Fragment(), BreedsView {
             layoutManager = GridLayoutManager(context, 2)
             adapter = BreedsAdapter(cats) {
                 // TODO on item click listener
+                presenter?.postFavorite(it.id)
             }
         }
     }

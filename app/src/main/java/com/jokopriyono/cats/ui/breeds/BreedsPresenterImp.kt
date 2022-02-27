@@ -1,8 +1,10 @@
 package com.jokopriyono.cats.ui.breeds
 
 import com.jokopriyono.cats.database.CatDatabase
-import com.jokopriyono.cats.model.network.search.SearchResponse
 import com.jokopriyono.cats.model.network.breeds.BreedsResponse
+import com.jokopriyono.cats.model.network.postfavorite.PostFavoriteBody
+import com.jokopriyono.cats.model.network.postfavorite.PostFavoriteResponse
+import com.jokopriyono.cats.model.network.search.SearchResponse
 import com.jokopriyono.cats.network.ApiClient
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -78,6 +80,32 @@ class BreedsPresenterImp(
                         view.hideLoading()
                     }
 
+                })
+        }
+    }
+
+    override fun postFavorite(imageId: String) {
+        view.showLoading()
+        globalScope.launch(Dispatchers.IO) {
+            val body = PostFavoriteBody(imageId = imageId, subId = "joko")
+            ApiClient.instance.postFavorite(body)
+                .enqueue(object : Callback<PostFavoriteResponse> {
+                    override fun onResponse(
+                        call: Call<PostFavoriteResponse>,
+                        response: Response<PostFavoriteResponse>
+                    ) {
+                        if (response.code() == 200) {
+                            view.showError("Sukses menambahkan favorit ke server")
+                        } else {
+                            view.showError("Masalah koneksi ke server ${response.code()}")
+                        }
+                        view.hideLoading()
+                    }
+
+                    override fun onFailure(call: Call<PostFavoriteResponse>, t: Throwable) {
+                        view.showError(t.message.toString())
+                        view.hideLoading()
+                    }
                 })
         }
     }

@@ -3,9 +3,14 @@ package com.jokopriyono.cats.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.jokopriyono.cats.databinding.ItemFavoriteCatBinding
+import com.jokopriyono.cats.model.network.getfavorite.GetFavoriteResponseItem
 
-class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
+class FavoriteAdapter(
+    private val favorites: List<GetFavoriteResponseItem>,
+    private val onItemClick: (GetFavoriteResponseItem) -> Unit
+) : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemFavoriteCatBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -17,11 +22,13 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: FavoriteAdapter.ViewHolder, position: Int) {
-        // TODO("Not yet implemented")
+        Glide.with(holder.binding.imgCat.context)
+            .load(favorites[position].image.url)
+            .into(holder.binding.imgCat)
+        holder.binding.btnFavorite.setOnClickListener {
+            onItemClick(favorites[position])
+        }
     }
 
-    override fun getItemCount(): Int {
-        // TODO("Not yet implemented")
-        return 10
-    }
+    override fun getItemCount() = favorites.size
 }

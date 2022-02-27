@@ -6,4 +6,6 @@ interface BreedsPresenter {
 
     fun getBreeds()
 
+    fun postFavorite(imageId: String)
+
 }

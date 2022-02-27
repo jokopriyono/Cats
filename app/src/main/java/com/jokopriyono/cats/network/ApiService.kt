@@ -2,13 +2,14 @@ package com.jokopriyono.cats.network
 
 import com.jokopriyono.cats.model.network.search.SearchResponse
 import com.jokopriyono.cats.model.network.breeds.BreedsResponse
+import com.jokopriyono.cats.model.network.deletefavorite.DeleteFavoriteResponse
+import com.jokopriyono.cats.model.network.getfavorite.GetFavoriteResponse
+import com.jokopriyono.cats.model.network.postfavorite.PostFavoriteBody
+import com.jokopriyono.cats.model.network.postfavorite.PostFavoriteResponse
 import com.jokopriyono.cats.model.network.vote.VoteBody
 import com.jokopriyono.cats.model.network.vote.VoteResponse
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -37,5 +38,21 @@ interface ApiService {
         @Query("limit") limit: Int? = null,
         @Query("page") page: Int? = null,
     ): Call<BreedsResponse>
+
+
+    @POST("favourites")
+    fun postFavorite(
+        @Body body: PostFavoriteBody
+    ): Call<PostFavoriteResponse>
+
+    @GET("favourites")
+    fun getFavorite(
+        @Query("sub_id") subId: String,
+    ): Call<GetFavoriteResponse>
+
+    @DELETE("favourites/{favourite_id}")
+    fun deleteFavorite(
+        @Path("favourite_id") favoriteId: Int
+    ): Call<DeleteFavoriteResponse>
 
 }

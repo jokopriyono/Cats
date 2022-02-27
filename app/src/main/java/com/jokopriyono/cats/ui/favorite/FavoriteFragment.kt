@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.jokopriyono.cats.adapter.FavoriteAdapter
 import com.jokopriyono.cats.database.CatDatabase
 import com.jokopriyono.cats.databinding.FragmentFavoriteBinding
+import com.jokopriyono.cats.model.network.getfavorite.GetFavoriteResponse
 import com.jokopriyono.cats.ui.MainActivity
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -62,16 +63,21 @@ class FavoriteFragment : Fragment(), FavoriteView {
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerOrder.adapter = adapter
+        binding.btnRefresh.setOnClickListener { refreshFavorite() }
+
+        refreshFavorite()
     }
 
     override fun refreshFavorite() {
         presenter?.getAllFavorite()
     }
 
-    override fun showAllFavorite() {
+    override fun showAllFavorite(favorites: GetFavoriteResponse) {
         binding.recyclerFavCats.apply {
             layoutManager = GridLayoutManager(context, 2)
-            adapter = FavoriteAdapter()
+            adapter = FavoriteAdapter(favorites) {
+                presenter?.removeFavorite(it.id)
+            }
         }
     }
 

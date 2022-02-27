@@ -21,6 +21,7 @@ class BreedsAdapter(
     }
 
     override fun onBindViewHolder(holder: BreedsAdapter.ViewHolder, position: Int) {
+        holder.binding.btnFavorite.setOnClickListener { onItemClick(cats[position]) }
         Glide.with(holder.binding.imgCat.context)
             .load(cats[position].url)
             .into(holder.binding.imgCat)

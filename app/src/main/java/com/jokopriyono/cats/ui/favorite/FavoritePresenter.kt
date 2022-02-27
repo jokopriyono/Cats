@@ -4,6 +4,6 @@ interface FavoritePresenter {
 
     fun getAllFavorite()
 
-    fun removeFavorite()
+    fun removeFavorite(favoriteId: Int)
 
 }
